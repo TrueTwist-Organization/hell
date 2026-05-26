@@ -19,11 +19,9 @@ const Header = ({
         <button id="openNav" className="header__hamburger" onClick={toggleNav}>
           <span></span><span></span><span></span>
         </button>
-        <div className="header__logo" onClick={onReset} style={{ cursor: 'pointer' }}>
-          <span className="logo-cart-icon">🛒</span>
-          <span className="logo-blue">He</span>
-          <span className="logo-cyan">ll</span>
-        </div>
+        <button type="button" className="header__logo" onClick={onReset} aria-label="style4cloth — Home">
+          <img src="/logo.png" alt="style4cloth" className="header__logo-img" />
+        </button>
         <div className="header__actions">
           <button className="header__btn" onClick={() => onOpenModal('wishlist')} title="Wishlist">
             <svg className="icon-heart" viewBox="0 0 24 24">

@@ -3,7 +3,8 @@ import ProductCard from './ProductCard';
 import AdSlot from './AdSlot';
 
 const ProductList = ({ 
-  products = [], // Passed dynamically from state
+  products = [],
+  categories = [],
   selectedCategory, 
   searchQuery, 
   onProductClick, 
@@ -38,14 +39,14 @@ const ProductList = ({
     return true;
   });
 
-  // Limit to exactly 6 products on the home screen (mostly corsets and trendy shirts)
+  const homeFeaturedProducts = categories.length
+    ? categories
+        .flatMap((cat) => products.filter((p) => p.category === cat.id).slice(0, 2))
+        .slice(0, 6)
+    : products.slice(0, 6);
+
   const totalProducts = (!selectedCategory && !searchQuery)
-    ? [
-        ...products.filter(p => p.category === 'corset').slice(0, 2),
-        ...products.filter(p => p.category === 'trendy-Shirts').slice(0, 2),
-        ...products.filter(p => p.category === 'Indian dresses').slice(0, 1),
-        ...products.filter(p => p.category === 'Ethnic Wear').slice(0, 1)
-      ]
+    ? homeFeaturedProducts
     : filteredProducts;
 
   const totalPages = Math.ceil(totalProducts.length / PRODUCTS_PER_PAGE);

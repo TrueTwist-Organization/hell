@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Footer = ({ onOpenPolicy, onOpenModal, onSelectCategory }) => {
+const Footer = ({ categories = [], onOpenPolicy, onOpenModal, onSelectCategory }) => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [subscribed, setSubscribed] = useState(false);
@@ -38,7 +38,7 @@ const Footer = ({ onOpenPolicy, onOpenModal, onSelectCategory }) => {
     <footer className="footer">
       {/* Newsletter Section */}
       <div className="footer__newsletter">
-        <h4>Join the HELL VIP Club</h4>
+        <h4>Join the style4cloth VIP Club</h4>
         <p>Subscribe for exclusive access to sales, new drops & get 10% off your next purchase!</p>
         
         {!subscribed ? (
@@ -78,31 +78,13 @@ const Footer = ({ onOpenPolicy, onOpenModal, onSelectCategory }) => {
         <div className="footer__col">
           <h4>Shop Clothes</h4>
           <ul>
-            <li>
-              <a href="#" onClick={(e) => { e.preventDefault(); onSelectCategory('Indian dresses'); }}>
-                Indian Dresses
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={(e) => { e.preventDefault(); onSelectCategory('corset'); }}>
-                Corset Tops
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={(e) => { e.preventDefault(); onSelectCategory('Ethnic Wear'); }}>
-                Ethnic Wear
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={(e) => { e.preventDefault(); onSelectCategory('Combo'); }}>
-                Combos
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={(e) => { e.preventDefault(); onSelectCategory('trendy-Shirts'); }}>
-                Trendy Shirts
-              </a>
-            </li>
+            {categories.map((cat) => (
+              <li key={cat.id}>
+                <a href="#" onClick={(e) => { e.preventDefault(); onSelectCategory(cat.id); }}>
+                  {cat.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -137,7 +119,7 @@ const Footer = ({ onOpenPolicy, onOpenModal, onSelectCategory }) => {
           <ul>
             <li>
               <a href="#" onClick={(e) => handleLinkClick(e, 'about')}>
-                About HELL Brand
+                About style4cloth
               </a>
             </li>
             <li>
@@ -214,8 +196,8 @@ const Footer = ({ onOpenPolicy, onOpenModal, onSelectCategory }) => {
       <div className="footer__support">
         <h4>Need Support? We're Here</h4>
         <div className="support-actions">
-          <a href="mailto:contact@hell.com" className="support-btn">
-            ✉ Email: contact@hell.com
+          <a href="mailto:contact@style4cloth.com" className="support-btn">
+            ✉ Email: contact@style4cloth.com
           </a>
           <a href="tel:+919876543210" className="support-btn">
             📞 Call: +91 98765 43210
@@ -233,7 +215,11 @@ const Footer = ({ onOpenPolicy, onOpenModal, onSelectCategory }) => {
           <span className="payment-badge">Mastercard</span>
         </div>
         <div className="copyright-info">
-          &copy; 2026 <strong>HELL FASHIONS</strong>. All Rights Reserved.
+          &copy; 2026 <strong>style4cloth</strong>. All Rights Reserved.
+        </div>
+        <div className="footer-credits">
+          <p>Design by Truetwist</p>
+          <p>Marketing by Truetwist</p>
         </div>
       </div>
     </footer>

@@ -1,25 +1,22 @@
 import React from 'react';
+import { defaultCategories } from '../data/categories';
 
-const Categories = ({ selectedCategory, setSelectedCategory }) => {
-  const categoryList = [
-    { id: 'Indian dresses', label: 'Indian Dresses', img: '/Image/Image/Indian dresses/1.webp' },
-    { id: 'corset', label: 'Corset', img: '/Image/Image/corset/1.webp' },
-    { id: 'Ethnic Wear', label: 'Ethnic Wear', img: '/Image/Image/Ethnic Wear/1.jpg' },
-    { id: 'Combo', label: 'Combo', img: '/Image/Image/Combo/1.jpg' },
-    { id: 'trendy-Shirts', label: 'Trendy Shirts', img: '/Image/Image/trendy-Shirts/1.webp' }
-  ];
-
+const Categories = ({ categories = defaultCategories, selectedCategory, setSelectedCategory }) => {
   const handleCategoryClick = (id) => {
     if (selectedCategory === id) {
-      setSelectedCategory(null); // toggle off if clicked again
+      setSelectedCategory(null);
     } else {
       setSelectedCategory(id);
     }
   };
 
+  if (!categories.length) {
+    return null;
+  }
+
   return (
     <div className="categories">
-      {categoryList.map((cat) => (
+      {categories.map((cat) => (
         <div 
           key={cat.id} 
           className={`category-item ${selectedCategory === cat.id ? 'active' : ''}`}

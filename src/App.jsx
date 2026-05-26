@@ -5,6 +5,7 @@ import Categories from './components/Categories';
 import HeroBanner from './components/HeroBanner';
 import ProductList from './components/ProductList';
 import { products as allProducts } from './data/products';
+import { defaultCategories } from './data/categories';
 import Footer from './components/Footer';
 import ProductDetailsPage from './components/ProductDetailsPage';
 import AccountPage from './components/AccountPage';
@@ -22,14 +23,14 @@ import {
 
 // Mock policy texts
 const POLICY_TEXTS = {
-  about: "About Us\n\nWelcome to Hell, your premium destination for high-quality Indian dresses, corset-style tops, elegant ethnic wear, and combo outfits.\n\nEstablished in 2026, we strive to bring the finest fashion directly to your doorstep. We work with talented local artisans and modern design houses to provide high-quality, boutique-friendly collections that celebrate traditional artistry combined with contemporary aesthetics.\n\nOur mission is to make fashionable, premium-quality apparel accessible to everyone, backed by exceptional customer support and hassle-free shopping.",
-  contact: "Contact Us\n\nWe would love to hear from you! For any questions, order support, or business inquiries, reach out to us:\n\n✉ Email: contact@hell.com\n📞 Phone: +91 98765 43210 (Mon-Sat, 10 AM - 6 PM)\n🏢 Address: Hell Fashion House, 45, Rajouri Garden, New Delhi, 110027",
+  about: "About Us\n\nWelcome to style4cloth, your premium destination for high-quality Indian dresses, corset-style tops, elegant ethnic wear, and combo outfits.\n\nEstablished in 2026, we strive to bring the finest fashion directly to your doorstep. We work with talented local artisans and modern design houses to provide high-quality, boutique-friendly collections that celebrate traditional artistry combined with contemporary aesthetics.\n\nOur mission is to make fashionable, premium-quality apparel accessible to everyone, backed by exceptional customer support and hassle-free shopping.",
+  contact: "Contact Us\n\nWe would love to hear from you! For any questions, order support, or business inquiries, reach out to us:\n\n✉ Email: contact@style4cloth.com\n📞 Phone: +91 98765 43210 (Mon-Sat, 10 AM - 6 PM)\n🏢 Address: style4cloth, 45, Rajouri Garden, New Delhi, 110027",
   faqs: "Frequently Asked Questions (FAQs)\n\nQ: Is delivery really free?\nA: Yes! We offer free shipping across India for all products.\n\nQ: What payment options do you support?\nA: Currently, we support Cash on Delivery (COD) for all orders.\n\nQ: How long does shipping take?\nA: Delivery typically takes 3-7 business days depending on your location.\n\nQ: Can I return or exchange my item?\nA: Yes, we offer a 7-day hassle-free return and exchange policy. Check our Return & Refund Policy for details.",
-  terms: "Terms & Conditions\n\nBy accessing and browsing Hell, you agree to comply with our terms. All website content, logos, design templates, and images are copyrighted assets of Hell.\n\nWe reserve the right to modify prices, descriptions, and promotional offers at any time without prior notice. Abuse of coupon codes or fraudulent checkout activity may lead to order cancellation.",
-  privacy: "Privacy Policy\n\nAt Hell, we respect your privacy. We collect basic information like name, email, phone number, and shipping address solely to process your orders and improve your shopping experience.\n\nWe never sell, rent, or share your personal data with third parties. All transactions and communication are secured under standard industry encryption.",
-  cookies: "Cookie Policy\n\nOur website uses cookies to enhance your browsing experience, remember items in your cart, and compile analytics on web traffic.\n\nBy using Hell, you consent to our use of cookies. You can disable cookies in your browser settings at any time, but some store features may not function properly.",
+  terms: "Terms & Conditions\n\nBy accessing and browsing style4cloth, you agree to comply with our terms. All website content, logos, design templates, and images are copyrighted assets of style4cloth.\n\nWe reserve the right to modify prices, descriptions, and promotional offers at any time without prior notice. Abuse of coupon codes or fraudulent checkout activity may lead to order cancellation.",
+  privacy: "Privacy Policy\n\nAt style4cloth, we respect your privacy. We collect basic information like name, email, phone number, and shipping address solely to process your orders and improve your shopping experience.\n\nWe never sell, rent, or share your personal data with third parties. All transactions and communication are secured under standard industry encryption.",
+  cookies: "Cookie Policy\n\nOur website uses cookies to enhance your browsing experience, remember items in your cart, and compile analytics on web traffic.\n\nBy using style4cloth, you consent to our use of cookies. You can disable cookies in your browser settings at any time, but some store features may not function properly.",
   returns: "Return & Refund Policy\n\nWe offer a 7-day return policy. If you are not satisfied with your purchase, you can request a return or exchange within 7 days of receiving the package.\n\nConditions:\n- Item must be unworn, unwashed, and in its original packaging with tags intact.\n- Refunds will be processed to your bank account after product quality checks are completed (takes 5-7 business days).",
-  disclosure: "Disclosure Policy\n\nWe operate with complete transparency. Any sponsored posts, affiliate collaborations, or reviews on this site will be clearly disclosed to our customers.\n\nOur primary recommendation remains high-quality products directly manufactured or sourced by Hell.",
+  disclosure: "Disclosure Policy\n\nWe operate with complete transparency. Any sponsored posts, affiliate collaborations, or reviews on this site will be clearly disclosed to our customers.\n\nOur primary recommendation remains high-quality products directly manufactured or sourced by style4cloth.",
   disclaimer: "Disclaimer\n\nAll product representations (color, texture, fit) on our site are displayed as accurately as possible. However, slight variations may occur due to screen lighting and digital image processing.\n\nPrices listed are promotional and subject to change based on stock availability and campaign duration."
 };
 
@@ -80,6 +81,18 @@ function App() {
       }
     }
     return [];
+  });
+
+  const [categoriesList, setCategoriesList] = useState(() => {
+    const saved = localStorage.getItem('hell_categories');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    return defaultCategories;
   });
   
   // Filtering states
@@ -209,6 +222,16 @@ function App() {
   React.useEffect(() => {
     localStorage.setItem('hell_ad_slots_v3', JSON.stringify(adSlots));
   }, [adSlots]);
+
+  React.useEffect(() => {
+    localStorage.setItem('hell_categories', JSON.stringify(categoriesList));
+  }, [categoriesList]);
+
+  React.useEffect(() => {
+    if (selectedCategory && !categoriesList.some((c) => c.id === selectedCategory)) {
+      setSelectedCategory(null);
+    }
+  }, [categoriesList, selectedCategory]);
 
   const handleOpenModal = (modalName) => {
     if (modalName === 'cart') {
@@ -534,6 +557,8 @@ function App() {
         <AdminPanel 
           productsList={productsList}
           setProductsList={setProductsList}
+          categoriesList={categoriesList}
+          setCategoriesList={setCategoriesList}
           orders={orders}
           setOrders={setOrders}
           adSlots={adSlots}
@@ -546,6 +571,7 @@ function App() {
       ) : (
         <>
           <Categories 
+            categories={categoriesList}
             selectedCategory={selectedCategory} 
             setSelectedCategory={(cat) => {
               window.history.pushState({}, '', '/');
@@ -574,6 +600,7 @@ function App() {
  
           <ProductList 
             products={productsList}
+            categories={categoriesList}
             selectedCategory={selectedCategory}
             searchQuery={searchQuery}
             onProductClick={handleProductClick}
@@ -587,6 +614,7 @@ function App() {
       )}
 
       <Footer 
+        categories={categoriesList}
         onOpenPolicy={handleOpenPolicy} 
         onOpenModal={handleOpenModal}
         onSelectCategory={(cat) => {

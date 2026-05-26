@@ -133,7 +133,7 @@ const ProductDetailsPage = ({
         {/* Special Offer Badge */}
         <div className="details-special-badge">
           <span className="badge-tag">Special Price</span>
-          <span className="badge-desc">Get at flat ₹{product.specialPrice} with HELL10 coupon</span>
+          <span className="badge-desc">Get at flat ₹{product.specialPrice} with promo code HELL10</span>
         </div>
       </div>
 

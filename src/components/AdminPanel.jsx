@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { normalizeCategoryId } from '../data/categories';
 
 const AdminPanel = ({ 
   productsList, 
-  setProductsList, 
+  setProductsList,
+  categoriesList = [],
+  setCategoriesList,
   orders, 
   setOrders, 
   adSlots = [],
@@ -20,10 +23,17 @@ const AdminPanel = ({
   // Product CRUD states
   const [isAddingProduct, setIsAddingProduct] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
+  const [showCategoryManager, setShowCategoryManager] = useState(false);
+
+  // Category form states
+  const [newCatLabel, setNewCatLabel] = useState('');
+  const [newCatId, setNewCatId] = useState('');
+  const [newCatImg, setNewCatImg] = useState('');
+  const [categoryError, setCategoryError] = useState('');
 
   // Form states for product
   const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('corset');
+  const [category, setCategory] = useState(categoriesList[0]?.id || '');
   const [image, setImage] = useState('');
   const [currentPrice, setCurrentPrice] = useState('');
   const [oldPrice, setOldPrice] = useState('');
@@ -76,6 +86,54 @@ const AdminPanel = ({
     setUsername('');
     setPassword('');
     onBack();
+  };
+
+  useEffect(() => {
+    if (!categoriesList.some((c) => c.id === category) && categoriesList.length > 0) {
+      setCategory(categoriesList[0].id);
+    }
+  }, [categoriesList, category]);
+
+  const resetCategoryForm = () => {
+    setNewCatLabel('');
+    setNewCatId('');
+    setNewCatImg('');
+    setCategoryError('');
+  };
+
+  const handleAddCategory = (e) => {
+    e.preventDefault();
+    const label = newCatLabel.trim();
+    const id = normalizeCategoryId(newCatId.trim() || label);
+    const img = newCatImg.trim() || '/Image/Image/trendy-Shirts/1.webp';
+
+    if (!label) {
+      setCategoryError('Category name is required.');
+      return;
+    }
+    if (!id) {
+      setCategoryError('Category ID is required.');
+      return;
+    }
+    if (categoriesList.some((c) => c.id.toLowerCase() === id.toLowerCase())) {
+      setCategoryError('A category with this ID already exists.');
+      return;
+    }
+
+    setCategoriesList((prev) => [...prev, { id, label, img }]);
+    resetCategoryForm();
+  };
+
+  const handleDeleteCategory = (catId) => {
+    const productCount = productsList.filter((p) => p.category === catId).length;
+    if (productCount > 0) {
+      alert(`Cannot remove "${catId}" — ${productCount} product(s) still use this category. Reassign or delete those products first.`);
+      return;
+    }
+    if (!window.confirm(`Remove category "${catId}"?`)) {
+      return;
+    }
+    setCategoriesList((prev) => prev.filter((c) => c.id !== catId));
   };
 
   const resetAdForm = () => {
@@ -182,7 +240,7 @@ const AdminPanel = ({
     
     // Reset Form
     setTitle('');
-    setCategory('corset');
+    setCategory(categoriesList[0]?.id || '');
     setImage('');
     setCurrentPrice('');
     setOldPrice('');
@@ -387,11 +445,11 @@ const AdminPanel = ({
             <div className="admin-summary-card" style={{ marginTop: '16px' }}>
               <h4 style={{ fontSize: '12px', fontWeight: '700', marginBottom: '10px' }}>Category Breakdown</h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                {['corset', 'trendy-Shirts', 'Indian dresses', 'Ethnic Wear', 'Combo'].map(cat => {
-                  const count = productsList.filter(p => p.category === cat).length;
+                {categoriesList.map((cat) => {
+                  const count = productsList.filter(p => p.category === cat.id).length;
                   return (
-                    <div key={cat} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', paddingBottom: '6px', borderBottom: '1px solid #f0f0f0' }}>
-                      <span style={{ textTransform: 'capitalize' }}>{cat}</span>
+                    <div key={cat.id} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', paddingBottom: '6px', borderBottom: '1px solid #f0f0f0' }}>
+                      <span>{cat.label}</span>
                       <strong>{count} items</strong>
                     </div>
                   );
@@ -406,12 +464,103 @@ const AdminPanel = ({
           <div className="admin-tab-section">
             {!isAddingProduct && !editingProduct ? (
               <>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                <div className="admin-products-toolbar">
                   <h3 className="admin-section-heading" style={{ margin: 0 }}>Product Inventory</h3>
-                  <button className="add-prod-trigger-btn" onClick={() => setIsAddingProduct(true)}>
-                    + Add Product
-                  </button>
+                  <div className="admin-products-toolbar__actions">
+                    <button
+                      type="button"
+                      className={`category-manage-btn ${showCategoryManager ? 'active' : ''}`}
+                      onClick={() => {
+                        setShowCategoryManager((prev) => !prev);
+                        resetCategoryForm();
+                      }}
+                    >
+                      {showCategoryManager ? 'Hide Categories' : 'Manage Categories'}
+                    </button>
+                    <button className="add-prod-trigger-btn" onClick={() => setIsAddingProduct(true)}>
+                      + Add Product
+                    </button>
+                  </div>
                 </div>
+
+                {showCategoryManager && (
+                  <div className="admin-category-manager">
+                    <h4 className="admin-category-manager__title">Store Categories ({categoriesList.length})</h4>
+
+                    <form onSubmit={handleAddCategory} className="admin-category-add-form">
+                      <div className="checkout-form-group">
+                        <label className="checkout-label">Category Name</label>
+                        <input
+                          type="text"
+                          value={newCatLabel}
+                          onChange={(e) => {
+                            setNewCatLabel(e.target.value);
+                            if (categoryError) setCategoryError('');
+                          }}
+                          placeholder="e.g. Wedding Wear"
+                          className="checkout-input-compact"
+                          required
+                        />
+                      </div>
+                      <div className="checkout-form-row">
+                        <div className="checkout-form-group">
+                          <label className="checkout-label">Category ID</label>
+                          <input
+                            type="text"
+                            value={newCatId}
+                            onChange={(e) => {
+                              setNewCatId(e.target.value);
+                              if (categoryError) setCategoryError('');
+                            }}
+                            placeholder="Auto from name if empty"
+                            className="checkout-input-compact"
+                          />
+                        </div>
+                        <div className="checkout-form-group">
+                          <label className="checkout-label">Image Path</label>
+                          <input
+                            type="text"
+                            value={newCatImg}
+                            onChange={(e) => setNewCatImg(e.target.value)}
+                            placeholder="/Image/Image/..."
+                            className="checkout-input-compact"
+                          />
+                        </div>
+                      </div>
+                      {categoryError && <div className="checkout-validation-error">{categoryError}</div>}
+                      <button type="submit" className="profile-save-btn" style={{ alignSelf: 'flex-start' }}>
+                        + Add Category
+                      </button>
+                    </form>
+
+                    {categoriesList.length === 0 ? (
+                      <p className="admin-category-empty">No categories yet. Add one above.</p>
+                    ) : (
+                      <div className="admin-category-list">
+                        {categoriesList.map((cat) => {
+                          const count = productsList.filter((p) => p.category === cat.id).length;
+                          return (
+                            <div key={cat.id} className="admin-category-row">
+                              <img src={cat.img} alt={cat.label} className="admin-category-row__thumb" />
+                              <div className="admin-category-row__info">
+                                <strong>{cat.label}</strong>
+                                <span>ID: {cat.id}</span>
+                                <span>{count} product{count !== 1 ? 's' : ''}</span>
+                              </div>
+                              <button
+                                type="button"
+                                className="delete-btn"
+                                onClick={() => handleDeleteCategory(cat.id)}
+                              >
+                                Remove
+                              </button>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 <div className="admin-table-container">
                   <table className="admin-table">
@@ -477,12 +626,15 @@ const AdminPanel = ({
                         onChange={(e) => setCategory(e.target.value)}
                         className="checkout-input-compact"
                         style={{ height: '32px' }}
+                        required
                       >
-                        <option value="corset">Corset</option>
-                        <option value="trendy-Shirts">Trendy Shirts</option>
-                        <option value="Indian dresses">Indian dresses</option>
-                        <option value="Ethnic Wear">Ethnic Wear</option>
-                        <option value="Combo">Combo</option>
+                        {categoriesList.length === 0 ? (
+                          <option value="">No categories — add one first</option>
+                        ) : (
+                          categoriesList.map((cat) => (
+                            <option key={cat.id} value={cat.id}>{cat.label}</option>
+                          ))
+                        )}
                       </select>
                     </div>
 
