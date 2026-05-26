@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Your Cart | Suchtuk</title>
+            <link rel="icon" href="https://suchtuk.com/uploads/site/favicon_69984bb9d2794.jpeg" type="image/jpeg">
+        <link rel="apple-touch-icon" href="https://suchtuk.com/uploads/site/favicon_69984bb9d2794.jpeg">
+        <link rel="stylesheet" href="https://suchtuk.com/assets/css/style.css?v=1779774296">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Ad Exchange (GPT + MagicTag) -->
+                                    <script id="magictag-new-v2" async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+                <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous"></script>
+        <script>
+        window.googletag = window.googletag || {cmd: []};
+                        var interstitialSlot;
+        googletag.cmd.push(function() {
+            interstitialSlot = googletag.defineOutOfPageSlot('/23340038887/New_interstitial', googletag.enums.OutOfPageFormat.INTERSTITIAL);
+            if (interstitialSlot) { interstitialSlot.addService(googletag.pubads()); }
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+                </script>
+        <!-- Google Analytics -->
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-3DR284HCPE"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-3DR284HCPE');
+        </script>
+        <script>
+    function setVH(){document.documentElement.style.setProperty('--vh',window.innerHeight+'px')}
+    setVH();window.addEventListener('resize',setVH);
+    </script>
+    <!-- Snap Pixel Code -->
+<script type='text/javascript'>
+(function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
+{a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
+a.queue=[];var s='script';r=t.createElement(s);r.async=!0;
+r.src=n;var u=t.getElementsByTagName(s)[0];
+u.parentNode.insertBefore(r,u);})(window,document,
+'https://sc-static.net/scevent.min.js');
+
+snaptr('init', '13779bd4-d3ad-418f-a10c-604545412d0b', {
+'user_email': '__INSERT_USER_EMAIL__'
+});
+
+snaptr('track', 'PAGE_VIEW');
+
+</script>
+<!-- End Snap Pixel Code -->
+<meta name="facebook-domain-verification" content="o28v0c5snp8aq4mos67bn2i6uwr4wb" />
+</head>
+<body>
+<div class="mobile-shell">
+
+<!-- Side Navigation -->
+<!--<div class="side-nav" id="sideNav">-->
+<!--    <div class="side-nav__header">-->
+<!--        <span class="side-nav__title">-->
+<!--            -->
+<!--                <img src="https://suchtuk.com/uploads/site/logo_69984bb9d2584.jpeg" alt="Suchtuk" style="max-height: 28px;">-->
+<!--            -->
+<!--        </span>-->
+<!--        <button class="side-nav__close" onclick="closeSideNav()">&times;</button>-->
+<!--    </div>-->
+<!--    <nav class="side-nav__links">-->
+<!--        <a href="https://suchtuk.com/">Home</a>-->
+<!--        -->
+<!--            <a href="https://suchtuk.com/category.php?slug=indian-dresses">Indian Dresses</a>-->
+<!--        -->
+<!--            <a href="https://suchtuk.com/category.php?slug=co-ord-set">Co-ord Set</a>-->
+<!--        -->
+<!--            <a href="https://suchtuk.com/category.php?slug=ethnic-wear">Ethnic Wear</a>-->
+<!--        -->
+<!--            <a href="https://suchtuk.com/category.php?slug=combo">Combo</a>-->
+<!--        -->
+<!--            <a href="https://suchtuk.com/category.php?slug=accessories">Accessories</a>-->
+<!--        -->
+<!--            <a href="https://suchtuk.com/category.php?slug=men-shoes">Men shoes</a>-->
+<!--        -->
+<!--    </nav>-->
+<!--</div>-->
+<!--<div class="side-nav__overlay" id="sideNavOverlay" onclick="closeSideNav()"></div>-->
+
+<!-- Scrollable Content -->
+<div class="mobile-shell__scroll" id="shellScroll">
+
+<!-- Top Ad above header -->
+
+<!-- Header -->
+<header class="header">
+    <div class="header__inner">
+        <button class="header__hamburger" onclick="openSideNav()" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="https://suchtuk.com/" class="header__logo">
+                            <img src="https://suchtuk.com/uploads/site/logo_69984bb9d2584.jpeg" alt="Suchtuk" style="max-height: 36px; display: block;">
+                    </a>
+        <nav class="header__nav">
+                            <a href="https://suchtuk.com/category.php?slug=indian-dresses">Indian Dresses</a>
+                            <a href="https://suchtuk.com/category.php?slug=co-ord-set">Co-ord Set</a>
+                            <a href="https://suchtuk.com/category.php?slug=ethnic-wear">Ethnic Wear</a>
+                            <a href="https://suchtuk.com/category.php?slug=combo">Combo</a>
+                            <a href="https://suchtuk.com/category.php?slug=accessories">Accessories</a>
+                            <a href="https://suchtuk.com/category.php?slug=men-shoes">Men shoes</a>
+                    </nav>
+        <div class="header__actions">
+            <a href="https://suchtuk.com/" class="header__icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#e53935" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </a>
+            <a href="https://suchtuk.com/" class="header__icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#2e7d32" stroke="none"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+            </a>
+        </div>
+    </div>
+    <!-- Search Bar (always visible) -->
+    <div class="header__search active" id="searchBar">
+        <form action="https://suchtuk.com/search.php" method="GET" class="search-form">
+            <span class="search-form__icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </span>
+            <input type="text" name="q" placeholder="Search for Sarees, Kurtis, Cosmetics, etc." class="search-form__input" autocomplete="off">
+            <button type="submit" class="search-form__btn">Search</button>
+        </form>
+    </div>
+</header>
+
+<main class="main-content">
+
+<section class="cart-page">
+    <div class="no-results">
+        <h3>Your cart is empty</h3>
+        <p>Start shopping to add items to your cart</p>
+        <a href="https://suchtuk.com/" class="btn btn--primary mt-20">Continue Shopping</a>
+    </div>
+</section>
+
+<section class="cart-info-text">
+    <p>Need quick answers before you buy? Our built-in assistant (powered by chat gpt&ndash;style guidance) helps you compare specs, check compatibility, and find the right add-ons&mdash;without leaving the cart. Ask a question, get a clear, helpful suggestion, and keep moving.</p>
+    <p>Prices here update in real time&mdash;no surprises at payment. We also surface the best available coupons, similar to the smart deal discovery you see on Google. If a bundle saves you more, you&rsquo;ll see it in your cart so you can lock in extra value instantly.</p>
+    <p>Prefer to think it over? Save items to your wishlist and sync across devices. Whether you&rsquo;re browsing on mobile or desktop, you&rsquo;ll enjoy fast, secure checkout flows you&rsquo;d expect from top marketplaces like Amazon and Flipkart, with multiple payment options and instant order confirmation.</p>
+    <p>We protect your purchase with safe payments, easy returns, and proactive order tracking. From the moment you hit &ldquo;Place Order,&rdquo; you&rsquo;ll receive timely updates, plus chat gpt&ndash;style tips on setup, care, and accessories so you get the most from what you buy.</p>
+    <p>Ready when you are&mdash;review, apply any coupons, and check out with confidence. Your cart experience blends the clarity of Google search, the reliability of Amazon, and the ease of Flipkart, all in one streamlined flow tailored to you.</p>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__col">
+            <h4>About</h4>
+            <ul>
+                <li><a href="https://suchtuk.com/about.php">About Us</a></li>
+                <li><a href="https://suchtuk.com/contact.php">Contact Us</a></li>
+                <li><a href="https://suchtuk.com/faqs.php">FAQs</a></li>
+            </ul>
+        </div>
+        <div class="footer__col">
+            <h4>Policies</h4>
+            <ul>
+                <li><a href="https://suchtuk.com/terms.php">Terms &amp; Conditions</a></li>
+                <li><a href="https://suchtuk.com/privacy.php">Privacy Policy</a></li>
+                <li><a href="https://suchtuk.com/cookie-policy.php">Cookie Policy</a></li>
+                <li><a href="https://suchtuk.com/refund.php">Return &amp; Refund Policy</a></li>
+                <li><a href="https://suchtuk.com/disclosure.php">Disclosure Policy</a></li>
+                <li><a href="https://suchtuk.com/disclaimer.php">Disclaimer</a></li>
+            </ul>
+        </div>
+        <div class="footer__col">
+            <h4>Support</h4>
+            <ul>
+                                <li><a href="mailto:contact@suchtuk.com">&#9993; contact@suchtuk.com</a></li>
+                <li><a href="#">Shipping Info</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <p>&copy; 2026 <strong>Suchtuk</strong></p>
+    </div>
+</footer>
+
+
+</div><!-- /.mobile-shell__scroll -->
+</div><!-- /.mobile-shell -->
+
+
+<script>window.SITE_URL = 'https://suchtuk.com';</script>
+<script src="https://suchtuk.com/assets/js/main.js?v=1779774296"></script>
+<script src="https://suchtuk.com/assets/js/cart.js?v=1779774296"></script>
+</body>
+</html>
